@@ -78,28 +78,28 @@ public class Movement : MonoBehaviour
     }
     void Update()
     {
-
+          
         switch (drone_id)
         {
             case "UAV1":
-                Debug.Log("The drone is a UAV1");
+                //Debug.Log("The drone is a UAV1");
                 transform.position = Quaternion.AngleAxis((float)lon, -Vector3.up) * Quaternion.AngleAxis((float)lat, -Vector3.right) * new Vector3(0, 0, 1);
-                transform.position += new Vector3(0, (float)alt, 0);
+                transform.position += new Vector3(0, (float)alt, 0); 
                 break;
             case "UAV2":
                 GameObject drone2 = Instantiate(Drone, new Vector3(0, 0, 0), Quaternion.identity);
-                Debug.Log("The drone is a UAV2");
+                //Debug.Log("The drone is a UAV2");
                 drone2.transform.position = Quaternion.AngleAxis((float)lon, -Vector3.up) * Quaternion.AngleAxis((float)lat, -Vector3.right) * new Vector3(0, 0, 1);
                 drone2.transform.position += new Vector3(0, (float)alt, 0);
                 break;
-            case "UAV3":
+           case "UAV3":
                 GameObject drone3 = Instantiate(Drone, new Vector3(0, 0, 0), Quaternion.identity);
-                Debug.Log("The drone is a UAV2");
+              //  Debug.Log("The drone is a UAV3");
                 drone3.transform.position = Quaternion.AngleAxis((float)lon, -Vector3.up) * Quaternion.AngleAxis((float)lat, -Vector3.right) * new Vector3(0, 0, 1);
                 drone3.transform.position += new Vector3(0, (float)alt, 0);
                 break;
-            default:
-
+          default:
+                
                 Debug.Log("The drone is unknown");
                 break;
         }

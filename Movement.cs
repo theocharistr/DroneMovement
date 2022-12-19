@@ -78,28 +78,45 @@ public class Movement : MonoBehaviour
     }
     void Update()
     {
-          
+        Debug.Log(drone_id + "Drone" + alt + "barom");
         switch (drone_id)
         {
             case "UAV1":
+                if (transform.hasChanged)
+                {
+                    print("The transform has changed!");
+                    transform.hasChanged = false;
+                }
                 //Debug.Log("The drone is a UAV1");
                 transform.position = Quaternion.AngleAxis((float)lon, -Vector3.up) * Quaternion.AngleAxis((float)lat, -Vector3.right) * new Vector3(0, 0, 1);
-                transform.position += new Vector3(0, (float)alt, 0); 
+                transform.position += new Vector3(0, (float)alt, 0);
+                Debug.Log(alt + "barom");
                 break;
             case "UAV2":
                 GameObject drone2 = Instantiate(Drone, new Vector3(0, 0, 0), Quaternion.identity);
+                if (drone2.transform.hasChanged)
+                {
+                    print("The transform has changed!");
+                    transform.hasChanged = false;
+                }
                 //Debug.Log("The drone is a UAV2");
                 drone2.transform.position = Quaternion.AngleAxis((float)lon, -Vector3.up) * Quaternion.AngleAxis((float)lat, -Vector3.right) * new Vector3(0, 0, 1);
                 drone2.transform.position += new Vector3(0, (float)alt, 0);
                 break;
-           case "UAV3":
+            case "UAV3":
+              
                 GameObject drone3 = Instantiate(Drone, new Vector3(0, 0, 0), Quaternion.identity);
-              //  Debug.Log("The drone is a UAV3");
+                if (drone3.transform.hasChanged)
+                {
+                    print("The transform has changed!");
+                    transform.hasChanged = false;
+                }
+                //  Debug.Log("The drone is a UAV3");
                 drone3.transform.position = Quaternion.AngleAxis((float)lon, -Vector3.up) * Quaternion.AngleAxis((float)lat, -Vector3.right) * new Vector3(0, 0, 1);
                 drone3.transform.position += new Vector3(0, (float)alt, 0);
                 break;
-          default:
-                
+            default:
+
                 Debug.Log("The drone is unknown");
                 break;
         }
@@ -120,7 +137,7 @@ public class Movement : MonoBehaviour
         drone_id = (string)joResponse["DRONE_ID"];
         lat = (double)joResponse["GPS.LATITUDE"];
         lon = (double)joResponse["GPS.LONGITUDE"];
-        alt = (double)joResponse["ALTITUDE"];
+        alt = (double)joResponse["BAROMETER"];
         //id = drone_id;
         //print(drone_id + " droneid");
         /* if (drone_id == "UAV2")
